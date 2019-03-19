@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED165C37223C0F66004D3E14 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = ED165C36223C0F66004D3E14 /* glad.c */; };
+		ED1EFAB42241364F00A5308F /* stb_loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED1EFAB32241364F00A5308F /* stb_loader.cpp */; };
 		EDAEB68C223AC172009B6A36 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDAEB68B223AC172009B6A36 /* main.cpp */; };
 		EDAEB694223AC20F009B6A36 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAEB693223AC20F009B6A36 /* OpenGL.framework */; };
 		EDAEB696223AC25A009B6A36 /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAEB695223AC25A009B6A36 /* libglfw.3.2.dylib */; };
@@ -28,6 +29,9 @@
 
 /* Begin PBXFileReference section */
 		ED165C36223C0F66004D3E14 /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glad.c; path = ../dev/native_dependencies/src/glad.c; sourceTree = "<group>"; };
+		ED1EFAB22241361C00A5308F /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		ED1EFAB32241364F00A5308F /* stb_loader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stb_loader.cpp; sourceTree = "<group>"; };
+		ED1EFAB5224136B400A5308F /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		EDAEB688223AC172009B6A36 /* LearningOpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearningOpenGL; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAEB68B223AC172009B6A36 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EDAEB693223AC20F009B6A36 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -71,10 +75,13 @@
 		EDAEB68A223AC172009B6A36 /* HelloWorld */ = {
 			isa = PBXGroup;
 			children = (
+				ED1EFAB5224136B400A5308F /* container.jpg */,
+				ED1EFAB22241361C00A5308F /* stb_image.h */,
 				EDAEB68B223AC172009B6A36 /* main.cpp */,
 				EDEEA62D224093FE004D48C5 /* myShader.h */,
 				EDEEA62F22409C36004D48C5 /* shader.vs */,
 				EDEEA63022409C58004D48C5 /* shader.fs */,
+				ED1EFAB32241364F00A5308F /* stb_loader.cpp */,
 			);
 			path = HelloWorld;
 			sourceTree = "<group>";
@@ -146,6 +153,7 @@
 			files = (
 				EDEEA62E224095F2004D48C5 /* myShader.h in Sources */,
 				EDAEB68C223AC172009B6A36 /* main.cpp in Sources */,
+				ED1EFAB42241364F00A5308F /* stb_loader.cpp in Sources */,
 				ED165C37223C0F66004D3E14 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
