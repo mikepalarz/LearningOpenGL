@@ -11,6 +11,7 @@
 		EDAEB68C223AC172009B6A36 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDAEB68B223AC172009B6A36 /* main.cpp */; };
 		EDAEB694223AC20F009B6A36 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAEB693223AC20F009B6A36 /* OpenGL.framework */; };
 		EDAEB696223AC25A009B6A36 /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAEB695223AC25A009B6A36 /* libglfw.3.2.dylib */; };
+		EDEEA62E224095F2004D48C5 /* myShader.h in Sources */ = {isa = PBXBuildFile; fileRef = EDEEA62D224093FE004D48C5 /* myShader.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,9 @@
 		EDAEB68B223AC172009B6A36 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EDAEB693223AC20F009B6A36 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EDAEB695223AC25A009B6A36 /* libglfw.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.2.dylib; path = ../../../usr/local/lib/libglfw.3.2.dylib; sourceTree = "<group>"; };
+		EDEEA62D224093FE004D48C5 /* myShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myShader.h; sourceTree = "<group>"; };
+		EDEEA62F22409C36004D48C5 /* shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
+		EDEEA63022409C58004D48C5 /* shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,9 @@
 			isa = PBXGroup;
 			children = (
 				EDAEB68B223AC172009B6A36 /* main.cpp */,
+				EDEEA62D224093FE004D48C5 /* myShader.h */,
+				EDEEA62F22409C36004D48C5 /* shader.vs */,
+				EDEEA63022409C58004D48C5 /* shader.fs */,
 			);
 			path = HelloWorld;
 			sourceTree = "<group>";
@@ -137,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDEEA62E224095F2004D48C5 /* myShader.h in Sources */,
 				EDAEB68C223AC172009B6A36 /* main.cpp in Sources */,
 				ED165C37223C0F66004D3E14 /* glad.c in Sources */,
 			);
