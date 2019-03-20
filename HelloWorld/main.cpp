@@ -19,24 +19,8 @@ void processInput(GLFWwindow *window);
 const unsigned int SCREEN_WIDTH = 800;
 const unsigned int SCREEN_HEIGHT = 600;
 
-// Source code for shaders
-const char *vertexShaderSource = "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "layout (location = 1) in vec3 aColor;\n"
-    "\n"
-    "out vec3 ourColor;\n"
-    "\n"
-    "void main() {\n"
-    "   gl_Position = vec4(aPos, 1.0);\n"
-    "   ourColor = aColor;\n"
-    "}\0";
-
-const char *fragmentShaderSource = "#version 330 core\n"
-    "out vec4 FragColor;\n"
-    "in vec3 ourColor;\n"
-    "void main() {\n"
-    "   FragColor = vec4(ourColor, 1.0);\n"
-    "}\n\0";
+// Stores how much we want to mix our textures
+float mixValue = 0.2f;
 
 int main(int argc, const char * argv[]) {
     
@@ -115,10 +99,10 @@ int main(int argc, const char * argv[]) {
     glGenTextures(1, &texture1);
     glBindTexture(GL_TEXTURE_2D, texture1);
     // Setting the texture wrapping and filtering options for the currently bound texture object
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     // Load and generate the texture
     int width, height, nrChannels;
     stbi_set_flip_vertically_on_load(true); // Telling stbi_image.h to flip images on the y-axis
@@ -170,12 +154,14 @@ int main(int argc, const char * argv[]) {
         glBindTexture(GL_TEXTURE_2D, texture1);
         glActiveTexture(GL_TEXTURE1);   // Likewise for the second
         glBindTexture(GL_TEXTURE_2D, texture2);
+        
+        myShader.setFloat("mixSetting", mixValue);  // Set the texture mix value within the fragment shader
+        
         // Render the container
         myShader.use();
         glBindVertexArray(VAO);
         // glDrawArrays(GL_TRIANGLES, 0, 3);    // Actually drawing the triangles
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        
         
         // Checks and calls I/O events; swap buffers
         glfwSwapBuffers(window);
@@ -200,5 +186,18 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height){
 void processInput(GLFWwindow *window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
+    }
+    
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+        mixValue += 0.001f;
+        if (mixValue >= 1.0f) {
+            mixValue = 1.0f;
+        }
+    }
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+        mixValue -= 0.001f;
+        if (mixValue <= 0.0f) {
+            mixValue = 0.0f;
+        }
     }
 }
