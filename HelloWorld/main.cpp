@@ -111,9 +111,9 @@ int main(int argc, const char * argv[]) {
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     
     // Generating our texture
-    unsigned int texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    unsigned int texture1, texture2;
+    glGenTextures(1, &texture1);
+    glBindTexture(GL_TEXTURE_2D, texture1);
     // Setting the texture wrapping and filtering options for the currently bound texture object
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -121,15 +121,40 @@ int main(int argc, const char * argv[]) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // Load and generate the texture
     int width, height, nrChannels;
+    stbi_set_flip_vertically_on_load(true); // Telling stbi_image.h to flip images on the y-axis
+    
     unsigned char *data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
     
     if (data) {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     } else {
-        std::cout << "Failed to load texture" << std::endl;
+        std::cout << "Failed to load texture #1" << std::endl;
     }
     stbi_image_free(data);
+    
+    // Moving onto texture 2
+    glGenTextures(1, &texture2);
+    glBindTexture(GL_TEXTURE_2D, texture2);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    data = stbi_load("awesomeface.png", &width, &height, &nrChannels, 0);
+    if (data) {
+        // Note that we need to specify a data type of GL_RGBA since the image has transparency and hence, an alpha channel
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    } else {
+        std::cout << "Failed to load texture #2" << std::endl;
+    }
+    stbi_image_free(data);
+    
+    // We also need to inform each sampler which texture unit it belongs to
+    myShader.use();    // We need to activate/use the shader before we can set any of the uniforms
+    myShader.setInt("texture1", 0);
+    myShader.setInt("texture2", 1);
     
     // This is our render loop
     while (!glfwWindowShouldClose(window)) {
@@ -141,7 +166,10 @@ int main(int argc, const char * argv[]) {
         glClear(GL_COLOR_BUFFER_BIT);
         
         // Binding the texture
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glActiveTexture(GL_TEXTURE0);   // Making sure to activate the first texture unit
+        glBindTexture(GL_TEXTURE_2D, texture1);
+        glActiveTexture(GL_TEXTURE1);   // Likewise for the second
+        glBindTexture(GL_TEXTURE_2D, texture2);
         // Render the container
         myShader.use();
         glBindVertexArray(VAO);

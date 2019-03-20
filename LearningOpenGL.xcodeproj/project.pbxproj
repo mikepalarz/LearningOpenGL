@@ -32,6 +32,7 @@
 		ED1EFAB22241361C00A5308F /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		ED1EFAB32241364F00A5308F /* stb_loader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stb_loader.cpp; sourceTree = "<group>"; };
 		ED1EFAB5224136B400A5308F /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
+		ED2D52292241ADBE00EEFA72 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		EDAEB688223AC172009B6A36 /* LearningOpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearningOpenGL; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAEB68B223AC172009B6A36 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EDAEB693223AC20F009B6A36 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -75,6 +76,7 @@
 		EDAEB68A223AC172009B6A36 /* HelloWorld */ = {
 			isa = PBXGroup;
 			children = (
+				ED2D52292241ADBE00EEFA72 /* awesomeface.png */,
 				ED1EFAB5224136B400A5308F /* container.jpg */,
 				ED1EFAB22241361C00A5308F /* stb_image.h */,
 				EDAEB68B223AC172009B6A36 /* main.cpp */,
