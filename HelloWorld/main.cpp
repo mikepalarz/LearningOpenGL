@@ -8,9 +8,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "stb_image.h"
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include "myShader.h"
+
 #include <iostream>
-#include <cmath>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -157,8 +162,16 @@ int main(int argc, const char * argv[]) {
         
         myShader.setFloat("mixSetting", mixValue);  // Set the texture mix value within the fragment shader
         
+        // Creating transformations
+        glm::mat4 transform = glm::mat4(1.0f);  // Initializing the transform matrix into an identity matrix first
+        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+        transform = glm::rotate(transform, (float) glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        
         // Render the container
         myShader.use();
+        unsigned int transformLocation = glGetUniformLocation(myShader.ID, "transform");
+        glUniformMatrix4fv(transformLocation, 1, GL_FALSE, glm::value_ptr(transform));
+        
         glBindVertexArray(VAO);
         // glDrawArrays(GL_TRIANGLES, 0, 3);    // Actually drawing the triangles
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
